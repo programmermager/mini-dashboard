@@ -1,15 +1,20 @@
+import { useState } from "react";
 import FormLogin from "./components/form-login";
+ 
 
 function LoginPage(){
+
+    const [isLogin, setIsLogin] = useState(true);
+
     return (
         <div className="flex justify-center min-h-screen">
             <div className="flex justify-center items-center">
-                <div className="flex flex-col mr-20">
+                <div className="flex flex-col lg:mr-20 px-5">
                     <div className="flex flex-row items-center">
-                        <div className="flex mr-2">
-                            <div className="w-16 h-16 bg-[#de688a] rounded-full"></div>
-                            <div className="w-16 h-16 z-10 bg-[#012238] bg-opacity-85 rounded-full -mx-4"></div>
-                            <div className="w-16 h-16 bg-[#2f3369] rounded-full"></div>
+                        <div className="flex items-center mr-2">
+                            <div className="w-12 h-12 bg-[#012238]  rounded-full"></div>
+                            <div className="w-16 h-16 z-10  bg-[#2f3369] bg-opacity-85 rounded-full -mx-5"></div>
+                            <div className="w-12 h-12 bg-[#de688a] rounded-full"></div>
                         </div>
                         <div className="flex flex-col items-center">
                             <p className="text-lg font-bold">Wakanda </p>
@@ -18,12 +23,12 @@ function LoginPage(){
                     </div>
                     <p className="text-xl font-bold mt-5">Masuk</p>
                     <div className="flex flex-row">
-                        <p className="text-sm">Belum punya akun Wakanda Forever?</p>
-                        <p className="text-sm text-blue-800 font-bold ml-1">Registrasi Disini</p>
+                        <p className="text-sm">{isLogin ? `Belum punya akun Wakanda Forever?` : `Sudah punya akun Wakanda Forever?`} </p>
+                        <p onClick={(e)=> setIsLogin(!isLogin) } className="text-sm text-blue-800 font-bold ml-1">{isLogin ? `Registrasi Disini` : `Login Disini`}</p>
                     </div>
                     <hr className="mt-2"/>
                     
-                    <FormLogin/>
+                    <FormLogin isRegister={!isLogin}/>
 
                     <p className="text-center mt-2">Dengan menekan tombol masuk, Anda telah menyetujui</p>
                     <div className="flex flex-row justify-center">

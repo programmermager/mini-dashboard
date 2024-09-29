@@ -1,10 +1,15 @@
 import React from 'react';
 import { cn } from '../lib/helper/utils';
 
-function Button({text, onClick, className}){
+function Button({text, onClick, className, disabled, isLoading}){
+    if(isLoading) {
+        return <center><svg className="h-6 w-6 animate-spin rounded-full border-b-2 border-current" viewBox="0 0 24 24"></svg></center>;
+    }
     return (
         <div>
-            <button onClick={onClick} className={cn('w-full rounded-lg bg-primary text-white p-3 text-sm', className)}>{text}</button>
+            <button onClick={disabled ? null : onClick} className={cn(`w-full rounded-lg ${disabled ? 'bg-slate-400' : 'bg-primary'} text-white p-3 text-sm`, className)}>
+            {text}
+            </button>
         </div>
     )
 }
